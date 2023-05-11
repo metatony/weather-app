@@ -16,8 +16,10 @@ function FormInput() {
         setCity(event.target.value)
     }
 
-    async function getWeather () {
+    async function getWeather (event) {
         
+
+
         const url = `https://openweather43.p.rapidapi.com/weather?q=${city}&appid=${AppId}&units=standard`;
 
         const options = {
@@ -36,6 +38,7 @@ function FormInput() {
         setWeather(result);
 
     } catch (error) {
+        event.preventDefault();
         console.error(error);
         setError(true);
     }
@@ -78,7 +81,7 @@ function FormInput() {
 				</div>
 			)}
 
-			{error && (
+			{error &&  (
 				<div className="mt-10 bg-red-200 px-12 py-4 rounded font-raleway text-xl font-semibold text-gray-700 sm:text-base sm:px-8">
 					<p> Couldn't fetch weather results.</p>
 				</div>

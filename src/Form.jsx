@@ -5,43 +5,23 @@ function FormInput() {
   const AppId = "da0f9c8d90bde7e619c3ec47766a42f4";
 
   const [temp, setTemp] = useState(null);
-  //const [minTemp, setMinTemp] = useState('');
-  //const [maxTemp, setMaxTemp] = useState('');
+  const [minTemp, setMinTemp] = useState(null);
+  const [maxTemp, setMaxTemp] = useState(null);
   const [error, setError] = useState(false);
   const [city, setCity] = useState("");
 
-<<<<<<< HEAD
-    const [weather, setWeather] = useState(null);
-    //const [minTemp, setMinTemp] = useState('');
-    //const [maxTemp, setMaxTemp] = useState('');
-    const [error, setError] = useState(false);
-    const [city, setCity] = useState('');
-
-    //onchange function
-    function textInput(event){
-        setCity(event.target.value)
-    }
-
-    async function getWeather (event) {
-        
-
-
-        const url = `https://openweather43.p.rapidapi.com/weather?q=${city}&appid=${AppId}&units=standard`;
-
-        const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': ApiKey,
-            'X-RapidAPI-Host': 'openweather43.p.rapidapi.com'
-        }
-=======
   //onchange function
   function textInput(event) {
     setCity(event.target.value);
   }
+
+
   const getWeather = async (event) => {
     setError(false);
     setTemp(null);
+    setMaxTemp(null);
+    setMinTemp(null);
+
     const url = `https://openweather43.p.rapidapi.com/weather?q=${city}&appid=${AppId}&units=standard`;
     const options = {
       method: "GET",
@@ -49,29 +29,26 @@ function FormInput() {
         "X-RapidAPI-Key": ApiKey,
         "X-RapidAPI-Host": "openweather43.p.rapidapi.com",
       },
->>>>>>> d0612a6e6690453876700dee65f5e03023e51130
     };
     try {
       const response = await fetch(url, options);
-      if (!response.ok) {
-        const error = await response.json();
-        console.log(error);
-      }
+      // if (!response.ok) {
+      //   const error = await response.json();
+      //   console.log(error);
+      // }
       const result = await response.json();
       setTemp(result.main.temp);
+      setMaxTemp(result.main.temp_max);
+      setMinTemp(result.main.temp_min);
+
     } catch (error) {
-<<<<<<< HEAD
-        event.preventDefault();
-        console.error(error);
-=======
->>>>>>> d0612a6e6690453876700dee65f5e03023e51130
         setError(true);
       console.log(error);
     }
   };
 
   return (
-    <div>
+    <div className="p-5">
       <div className="md:flex ">
         <input
           type="text"
@@ -95,35 +72,19 @@ function FormInput() {
             <p className="w-64 sm:w-41">Temperature:</p>
             <p>{temp} ° C</p>
           </div>
-          {/* <div className="flex mb-4 sm:w-41">
+          <div className="flex mb-4 sm:w-41">
 						<p className="w-64">Temperature Min:</p>
-						<p>{weather.main.temp_min}° C</p>
+						<p>{minTemp}° C</p>
 					</div>
 					<div className="flex">
 						<p className="w-64 sm:w-41">Temperature Max:</p>
-						<p>{weather.main.temp_max}° C</p>
-<<<<<<< HEAD
+						<p>{maxTemp}° C</p>
 					</div>
-				</div>
-			)}
-
-			{error &&  (
-				<div className="mt-10 bg-red-200 px-12 py-4 rounded font-raleway text-xl font-semibold text-gray-700 sm:text-base sm:px-8">
-					<p> Couldn't fetch weather results.</p>
-				</div>
-			)}
-
-
-
- 
-=======
-					</div> */}
->>>>>>> d0612a6e6690453876700dee65f5e03023e51130
         </div>
       )}
 
       {error && (
-        <div className="mt-10 bg-red-200 px-12 py-4 rounded font-raleway text-xl font-semibold text-gray-700 sm:text-base sm:px-8">
+        <div className="mt-10 bg-red-200 px-12 py-4 rounded text-xl font-semibold text-gray-700 sm:text-base sm:px-8">
           <p> Couldn't fetch weather results.</p>
         </div>
       )}

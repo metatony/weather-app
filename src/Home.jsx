@@ -12,8 +12,6 @@ import FormInput from './Form';
 
             <FormInput></FormInput>
 
-            
-
 		</div>
     )
 }

@@ -10,13 +10,14 @@ function FormInput() {
   const [error, setError] = useState(false);
   const [city, setCity] = useState("");
 
-  //onchange function
+  //onchange function to be passed to the input onchange property
   function textInput(event) {
     setCity(event.target.value);
   }
 
 
   const getWeather = async (event) => {
+    //this resets the state variable values each time the button is clicked
     setError(false);
     setTemp(null);
     setMaxTemp(null);
@@ -72,14 +73,17 @@ function FormInput() {
             <p className="w-64 sm:w-41">Temperature:</p>
             <p>{temp} ° C</p>
           </div>
+
           <div className="flex mb-4 sm:w-41">
 						<p className="w-64">Temperature Min:</p>
 						<p>{minTemp}° C</p>
 					</div>
+
 					<div className="flex">
 						<p className="w-64 sm:w-41">Temperature Max:</p>
 						<p>{maxTemp}° C</p>
 					</div>
+          
         </div>
       )}
 

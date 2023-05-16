@@ -50,7 +50,7 @@ function FormInput() {
 
   return (
     <div className="p-5">
-      <div className="md:flex ">
+      <div className=" flex flex-col md:flex-row">
         <input
           type="text"
           placeholder="Enter a City..."
@@ -61,14 +61,14 @@ function FormInput() {
         <button
           onClick={getWeather}
           type="submit"
-          className="outline-none  border-none font-bold font-raleway px-12 py-4 mt-6 md:mt-0 rounded-full md:rounded-sm w-64 bg-indigo-300 text-gray-700 transition duration-300 hover:bg-indigo-600 hover:text-white"
+          className="outline-none  border-none font-bold font-raleway px-12 py-4 mt-6 md:mt-0 rounded-full md:rounded-sm w-64 bg-[#91CBF0] text-gray-700 transition duration-300 hover:bg-[#418ED3] hover:text-white"
         >
           Search
         </button>
       </div>
 
       {temp && (
-        <div className="mt-10 flex flex-col justify-start bg-indigo-200 px-12 py-4 rounded font-raleway text-xl font-semibold text-gray-700 sm:text-base sm:px-8">
+        <div className="mt-10 flex flex-col justify-start bg-[#418ED3] px-12 py-4 rounded font-raleway text-xl text-white font-semibold  sm:text-base sm:px-8">
           <div className="flex mb-4">
             <p className="w-64 sm:w-41">Temperature:</p>
             <p>{temp} ° C</p>
